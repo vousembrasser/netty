@@ -1,4 +1,5 @@
-package com.vousembrasser.netty.netty;
+package com.vousembrasser.netty.netty.AttributeMap;
+
 
 import java.net.InetSocketAddress;
 
@@ -17,9 +18,10 @@ import io.netty.handler.codec.string.StringEncoder;
  * Copyright (C),2019-2020 中盈优创
  *
  * @author: dingwd
- * @date: 2019/8/13 0013 14:55
+ * @date: 2019/8/15 0015 17:16
  */
 public class HelloWorldServer {
+
 
     private int port;
 
@@ -27,20 +29,15 @@ public class HelloWorldServer {
         this.port = port;
     }
 
-
     public void start(){
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
-            ServerBootstrap sbs = new ServerBootstrap()
-                    .group(bossGroup,workerGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .localAddress(new InetSocketAddress(port))
+            ServerBootstrap sbs = new ServerBootstrap().group(bossGroup,workerGroup).channel(NioServerSocketChannel.class).localAddress(new InetSocketAddress(port))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
 
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-//                            ch.pipeline().addLast("framer", new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
                             ch.pipeline().addLast("decoder", new StringDecoder());
                             ch.pipeline().addLast("encoder", new StringEncoder());
                             ch.pipeline().addLast(new HelloWorldServerHandler());
@@ -64,9 +61,8 @@ public class HelloWorldServer {
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {
-            port = 8888;
+            port = 8080;
         }
         new HelloWorldServer(port).start();
     }
-
 }
