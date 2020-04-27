@@ -9,14 +9,14 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  * @author: dingwd
  * @date: 2019/8/15 0015 17:18
  */
-public class HelloWorldServerHandler  extends ChannelInboundHandlerAdapter {
+public class HelloWorldServerHandler extends ChannelInboundHandlerAdapter {
 
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("server channelRead..");
-        System.out.println(ctx.channel().remoteAddress()+"->Server :"+ msg.toString());
-        ctx.write("server write"+msg);
+        System.out.println(ctx.channel().remoteAddress() + "->Server :" + msg.toString());
+        ctx.write("server write" + msg);
         ctx.flush();
     }
 

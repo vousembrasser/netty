@@ -41,7 +41,7 @@ public class HeartBeatsClient {
         boot = new Bootstrap();
         boot.group(group).channel(NioSocketChannel.class).handler(new LoggingHandler(LogLevel.INFO));
 
-        final ConnectionWatchdog watchdog = new HeratClientConnectionWatchdog(boot, timer, port,host, true);
+        final ConnectionWatchdog watchdog = new HeratClientConnectionWatchdog(boot, timer, port, host, true);
 
         ChannelFuture future;
         //进行连接
@@ -56,7 +56,7 @@ public class HeartBeatsClient {
                     }
                 });
 
-                future = boot.connect(host,port);
+                future = boot.connect(host, port);
             }
 
             // 以下代码在synchronized同步块外面是安全的
@@ -67,8 +67,7 @@ public class HeartBeatsClient {
     }
 
     /**
-     * @param args
-     * @throws Exception
+     *
      */
     public static void main(String[] args) throws Exception {
         int port = 8080;

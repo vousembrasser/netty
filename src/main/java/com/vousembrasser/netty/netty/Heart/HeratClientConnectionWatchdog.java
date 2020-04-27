@@ -15,7 +15,7 @@ import io.netty.util.Timer;
  * @author: dingwd
  * @date: 2019/8/15 0015 13:40
  */
-public class HeratClientConnectionWatchdog extends ConnectionWatchdog{
+public class HeratClientConnectionWatchdog extends ConnectionWatchdog {
 
     private final ConnectorIdleStateTrigger idleStateTrigger = new ConnectorIdleStateTrigger();
 
@@ -25,8 +25,8 @@ public class HeratClientConnectionWatchdog extends ConnectionWatchdog{
 
     @Override
     public ChannelHandler[] handlers() {
-        System.out.println("Class====="+ this.getClass());
-        return new ChannelHandler[] {
+        System.out.println("Class=====" + this.getClass());
+        return new ChannelHandler[]{
                 this,
                 new IdleStateHandler(0, 4, 0, TimeUnit.SECONDS),
                 idleStateTrigger,

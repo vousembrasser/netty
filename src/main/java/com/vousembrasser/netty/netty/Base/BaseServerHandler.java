@@ -18,7 +18,7 @@ public class BaseServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
-        String body = (String)msg;
+        String body = (String) msg;
         System.out.println("server receive order : " + body + ";the counter is: " + ++counter);
     }
 

@@ -13,20 +13,19 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 /**
  * SimpleChannelInboundHandler的channelRead0还有一个好处就是你不用关心释放资源，
  * 因为源码中已经帮你释放了，所以如果你保存获取的信息的引用，是无效的~
- *
  */
-//public class HelloWorldClientHandler extends SimpleChannelInboundHandler<String> {
+//public class HelloWorldClientHandler1 extends SimpleChannelInboundHandler<String> {
 public class HelloWorldClientHandler extends ChannelInboundHandlerAdapter {
 
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        System.out.println("HelloWorldClientHandler Active");
+        System.out.println("HelloWorldClientHandler1 Active");
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        System.out.println("HelloWorldClientHandler read Message:"+msg);
+        System.out.println("HelloWorldClientHandler1 read Message:" + msg);
     }
 
 

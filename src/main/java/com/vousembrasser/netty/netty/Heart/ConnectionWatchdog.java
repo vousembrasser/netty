@@ -22,7 +22,6 @@ import io.netty.util.Timer;
 import io.netty.util.TimerTask;
 
 /**
- *
  * 重连检测狗，当发现当前的链路不稳定关闭之后，进行12次重连
  *
  * 1）继承了ChannelInboundHandlerAdapter，说明它也是Handler，也对，作为一个检测对象，肯定会放在链路中，否则怎么检测
@@ -46,7 +45,7 @@ import io.netty.util.TimerTask;
  * 3）4秒内没有写操作，进行心跳触发，也就是IdleStateHandler这个方法
  */
 @ChannelHandler.Sharable
-public abstract class ConnectionWatchdog extends ChannelInboundHandlerAdapter implements TimerTask,IChannelHandlerHolder{
+public abstract class ConnectionWatchdog extends ChannelInboundHandlerAdapter implements TimerTask, IChannelHandlerHolder {
 
     private final Bootstrap bootstrap;
     private final Timer timer;
@@ -58,7 +57,7 @@ public abstract class ConnectionWatchdog extends ChannelInboundHandlerAdapter im
     private int attempts;
 
 
-    public ConnectionWatchdog(Bootstrap bootstrap, Timer timer, int port,String host, boolean reconnect) {
+    public ConnectionWatchdog(Bootstrap bootstrap, Timer timer, int port, String host, boolean reconnect) {
         this.bootstrap = bootstrap;
         this.timer = timer;
         this.port = port;
@@ -81,7 +80,7 @@ public abstract class ConnectionWatchdog extends ChannelInboundHandlerAdapter im
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("链接关闭");
-        if(reconnect){
+        if (reconnect) {
             System.out.println("链接关闭，将进行重连");
             if (attempts < 12) {
                 attempts++;
@@ -107,7 +106,7 @@ public abstract class ConnectionWatchdog extends ChannelInboundHandlerAdapter im
                     ch.pipeline().addLast(handlers());
                 }
             });
-            future = bootstrap.connect(host,port);
+            future = bootstrap.connect(host, port);
         }
         //future对象
         future.addListener(new ChannelFutureListener() {
@@ -120,7 +119,7 @@ public abstract class ConnectionWatchdog extends ChannelInboundHandlerAdapter im
                 if (!succeed) {
                     System.out.println("重连失败");
                     f.channel().pipeline().fireChannelInactive();
-                }else{
+                } else {
                     System.out.println("重连成功");
                 }
             }

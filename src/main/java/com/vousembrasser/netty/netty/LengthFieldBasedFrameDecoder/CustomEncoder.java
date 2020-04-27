@@ -16,7 +16,7 @@ public class CustomEncoder extends MessageToByteEncoder<CustomMsg> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, CustomMsg msg, ByteBuf out) throws Exception {
-        if(null == msg){
+        if (null == msg) {
             throw new Exception("msg is null");
         }
 

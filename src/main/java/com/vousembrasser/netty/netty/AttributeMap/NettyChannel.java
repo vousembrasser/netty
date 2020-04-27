@@ -2,6 +2,8 @@ package com.vousembrasser.netty.netty.AttributeMap;
 
 import java.util.Date;
 
+import io.netty.util.AttributeKey;
+
 /**
  * Copyright (C),2019-2020 中盈优创
  *
@@ -9,13 +11,16 @@ import java.util.Date;
  * @date: 2019/8/15 0015 17:15
  */
 public class NettyChannel {
+
+    public static final AttributeKey<NettyChannel> NETTY_CHANNEL_KEY = AttributeKey.valueOf("netty.channel");
+
     private String name;
 
 
     private Date createDate;
 
 
-    public NettyChannel(String name,Date createDate) {
+    public NettyChannel(String name, Date createDate) {
         this.name = name;
         this.createDate = createDate;
     }

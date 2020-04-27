@@ -32,14 +32,14 @@ public class HeartBeatClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("激活时间是："+new Date());
+        System.out.println("激活时间是：" + new Date());
         System.out.println("HeartBeatClientHandler channelActive");
         ctx.fireChannelActive();
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("停止时间是："+new Date());
+        System.out.println("停止时间是：" + new Date());
         System.out.println("HeartBeatClientHandler channelInactive");
     }
 
